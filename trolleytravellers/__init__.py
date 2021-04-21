@@ -4,6 +4,7 @@ from flask_marshmallow import Marshmallow
 from trolleytravellers.config import Config
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from flask_cors import CORS
 
 #Create instance of database
 db = SQLAlchemy()
@@ -21,6 +22,7 @@ def create_app(config_class=Config):
 
     #name is the name of the current python module
     app = Flask(__name__)
+    CORS(app)
 
     #Linking to config.py file to set configurations
     app.config.from_object(Config)
