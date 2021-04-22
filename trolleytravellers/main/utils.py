@@ -20,14 +20,14 @@ def is_authenticated_customer(customer_username, customer_password):
     # Checks a given customer username's password against the database and returns the corresponding boolean
     customer_to_check = Customer.query.filter_by(username=str(customer_username)).first()
     if customer_to_check and bcrypt.check_password_hash(customer_to_check.password, customer_password):
-        return True
+        return customer_to_check.id
     return False
 
 def is_authenticated_volunteer(volunteer_username, volunteer_password):
     # Checks a given volunteer username's password against the database and returns the corresponding boolean
     volunteer_to_check = Volunteer.query.filter_by(username=str(volunteer_username)).first()
     if volunteer_to_check and bcrypt.check_password_hash(volunteer_to_check.password, volunteer_password):
-        return True
+        return volunteer_to_check.id
     return False
 
 
