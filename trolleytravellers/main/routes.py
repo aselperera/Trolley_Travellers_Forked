@@ -18,11 +18,16 @@ def customer_login():
         customer_username = json_object.get('username')
         customer_password = json_object.get('password')
 
-    # logged_in now returns customer id instead of a boolean
-    logged_in = is_authenticated_customer(customer_username, customer_password)
+    database_customer = is_authenticated_customer(customer_username, customer_password)
     failed_login = 'Login details incorrect, or no account found.'
-    if logged_in:
-        return jsonify({'Logged In' : True, 'Customer ID' : logged_in })
+    if database_customer:
+        return jsonify({
+            'Customer ID' : database_customer.id,
+            'Username' : database_customer.username,
+            'Email' : database_customer.email,
+            'Postcode' : database_customer.postcode,
+            'House Number' : database_customer.house_number
+            })
     else:
         return jsonify({'Login Failure' : failed_login })
 
@@ -41,11 +46,16 @@ def volunteer_login():
         volunteer_username = json_object.get('username')
         volunteer_password = json_object.get('password')
     
-    # logged_in now returns volunteer id instead of a boolean
-    logged_in = is_authenticated_volunteer(volunteer_username, volunteer_password)
+    database_volunteer = is_authenticated_volunteer(volunteer_username, volunteer_password)
     failed_login = 'Login details incorrect, or no account found.'
-    if logged_in:
-        return jsonify({'Logged In' : True, 'Volunteer ID' : logged_in })
+    if database_volunteer:
+        return jsonify({
+            'Volunteer ID' : database_volunteer.id,
+            'Username' : database_volunteer.username,
+            'Email' : database_volunteer.email,
+            'Postcode' : database_volunteer.postcode,
+            'House Number' : database_volunteer.house_number
+            })
     else:
         return jsonify({'Login Failure' : failed_login })
 
