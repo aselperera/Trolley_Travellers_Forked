@@ -158,5 +158,7 @@ Thumbs.db #thumbnail cache on Windows
 # profiling data
 .prof
 
+# vscode settings
+.vscode
 
 # End of https://www.toptal.com/developers/gitignore/api/flask
